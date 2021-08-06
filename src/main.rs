@@ -1,9 +1,13 @@
 #![windows_subsystem="windows"]
 #[macro_use] extern crate sciter;
-use sciter::{ Value };
+use sciter::Value;
 use std::thread;
+use lazy_static::lazy_static; 
+use std::sync::Mutex;
 
-static mut VECTOR: Vec<String> = vec![];
+lazy_static! {
+  static ref VECTOR: Mutex<Vec<String>> = Mutex::new(vec![]);
+}
 
 struct EventHandler {}
 impl EventHandler {
@@ -11,18 +15,15 @@ impl EventHandler {
         thread::spawn(move || {
             fill_vector(text, style as f32, legibility as f32, speed as f32, width as f32, canvas_width as f32, canvas_height as f32);
             loop {
-              if (unsafe { VECTOR.len() } > 0) {
-                let first_vec_entry = unsafe { 
-                  VECTOR.reverse();
-                  let entry = VECTOR.pop().unwrap();
-                  VECTOR.reverse();
-                  entry
-                };
-                if first_vec_entry == String::from("DONE") {
+              if VECTOR.lock().unwrap().len() > 0 {
+                VECTOR.lock().unwrap().reverse();
+                let first_item = VECTOR.lock().unwrap().pop().unwrap();
+                VECTOR.lock().unwrap().reverse();
+                if first_item == String::from("DONE") {
                   resolve.call(None, &make_args!("DONE"), None).unwrap();
                   break;
-                } 
-                callback.call(None, &make_args!(first_vec_entry), None).unwrap();
+                }
+                callback.call(None, &make_args!(first_item), None).unwrap();
               }
             }
         });
@@ -82,7 +83,7 @@ fn fill_vector_callback(ptr: *const c_char) -> () {
     let c_str: &CStr = unsafe { CStr::from_ptr(ptr) };
     let str_slice: &str = c_str.to_str().unwrap();
     let str_buf: String = str_slice.to_owned();
-    unsafe { VECTOR.push(str_buf) };
+    VECTOR.lock().unwrap().push(str_buf);
 }
 
 fn string_to_ptr(string: String) -> *const c_char {
