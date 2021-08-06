@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html window-icon="png/icon.png" content-style="css/theme.css" ui-size="normal">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Calligrapher AI</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
+    <script src="js/main.js" type="text/javascript" type="module"></script>
+  </head>
+
+  <body>
+    <div #container>
+      <div #save></div>
+      <div #controls>
+        <div .row>
+          <label>Speed:</label><slider #speed min="0.6" max="9.51" value="2.49" step="0.1" />
+        </div>
+        <div .row>
+          <label>Legibility:</label><slider #legibility min="0.15" max="2.5" value="0.75" step="0.02" />
+        </div>
+        <div .row>
+          <label>Thickness:</label><slider #thickness min="0.1" max="1.5" value="0.75" step="0.02" />
+        </div>
+        <div .row>
+          <label>Style:</label>
+          <select #style>
+            <option value="1337" selected>Random</option>
+            <option value="44">1</option>
+            <option value="54">2</option>
+            <option value="23">3</option>
+            <option value="1">4</option>
+            <option value="19">5</option>
+            <option value="6">6</option>
+            <option value="30">7</option>
+            <option value="11">8</option>
+            <option value="21">9</option>
+          </select>
+        </div>
+      </div>
+      <svg #canvas></svg>
+      <div #input-row>
+        <input #string |text value="Hello World!" maxlength="50"/>
+        <div #write>Write!</div>
+      </div>
+    </div>
+  </body>
+
+</html>

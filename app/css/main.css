@@ -1,0 +1,114 @@
+html {
+  font-size: 20px;
+  var(accent): window-accent-color;
+  var(lighten5): morph(window-accent-color, lighten:60%);
+}
+
+body {
+  margin: 0;
+}
+
+#container {
+  position: absolute;
+  background: black;
+  padding: 0px;
+  width: *;
+  height: *;
+  flow: vertical;
+}
+
+#canvas {
+  background: white;
+  width: *;
+  height: *;
+}
+
+#input-row {
+  border: 1px solid gray;
+  flow: horizontal;
+  width: *;
+  height: 2em;
+  box-sizing: border-box;
+}
+
+#string {
+  padding: 0;
+  padding-left: 0.5em;
+  font-size: 15px;
+  margin: 0;
+  height: 40px;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: *;
+  display: block;
+  line-height: 30px;
+  color: darkgrey;
+  border: none;
+  background: white;
+}
+
+#string:disabled {
+  background-color: activecaption !important;
+}
+
+#write {
+  width: 10em;
+  height: 2em;
+  text-align: center;
+  vertical-align: middle;
+  color: gray;
+  font-weight: bold;
+  background: white !important;
+  cursor: pointer;
+  border-left: 1px solid gray;
+}
+
+#write:hover {
+  background: color(lighten3) !important;
+}
+
+#write.disabled {
+  cursor: default;
+  background: activecaption !important;
+}
+
+#controls {
+  font-size: 1em;
+  color: gray;
+  position: absolute;
+  right: 0;
+  flow: vertical;
+  box-sizing: border-box;
+  width: calc(100% - 45px);
+  margin-left: *;
+  margin-top: 30px;
+  border-spacing: 3px;
+}
+
+.row {
+  margin-right: 10px;
+  margin-left: *;
+  width: 200px;
+  border-spacing: *;
+  flow: horizontal;
+}
+
+#save {
+  background-image: url(path:m409.8 278.5-153.8 153.8-153.8-153.8 28.3-28.3 105.5 105.5v-355.7h40v355.7l105.5-105.5zm102.2 193.5h-512v40h512zm0 0);
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  width: 25px;
+  height: 25px;
+  fill: gray;
+  cursor: pointer;
+  position: absolute;
+  margin: 20px;
+}
+
+option:hover {
+  background: color(lighten3);
+}
+
+select {
+  behavior: clickable;
+}

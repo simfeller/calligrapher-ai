@@ -1,0 +1,24 @@
+[package]
+name = "calligrapher-ai"
+version = "0.1.0"
+authors = ["GirkovArpa <girkovarpa@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
+libc ="*"
+libloading = "*"
+sciter-rs = "*"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"
+
+[package.metadata.winres]
+OriginalFilename = "https://calligrapher.ai"
+LegalCopyright = "Copyright © girkovarpa 2021, sjvasquez 2020"
+FileDescription = "Realistic handwriting generator. Convert text to handwriting using a recurrent neural network. Choose from various print and cursive styles. Customize the outputs and download as SVG."
+ProductName = "Calligrapher AI"
+ProductVersion = "0.1.0"
+
+[profile.release]
+opt-level = "z"  # Optimize for size.
+panic = "abort"
