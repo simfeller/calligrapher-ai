@@ -2,3 +2,4 @@
 /release
 *.dll
 *.exe
+.DS_Store
